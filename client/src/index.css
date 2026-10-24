@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Palette: deep marine navy + two signal hues (teal = face, violet = keystrokes) */
+:root {
+  --bg: 238 242 248; --surface: 255 255 255; --raised: 245 247 252; --line: 217 224 236;
+  --ink: 16 26 48; --mute: 91 105 135;
+  --face: 14 159 142; --keys: 109 91 224; --warn: 196 130 12; --bad: 214 63 79; --good: 22 150 92;
+  --shadow: 20 30 60;
+}
+.dark {
+  --bg: 11 19 36; --surface: 18 28 49; --raised: 25 38 64; --line: 38 52 82;
+  --ink: 231 237 248; --mute: 141 155 184;
+  --face: 51 214 189; --keys: 139 124 246; --warn: 245 181 68; --bad: 240 97 109; --good: 74 222 154;
+  --shadow: 0 0 0;
+}
+
+@layer base {
+  html, body, #root { height: 100%; }
+  body { @apply bg-bg text-ink font-sans antialiased; }
+  h1, h2, h3 { @apply font-display tracking-tight; }
+  :focus-visible { @apply outline outline-2 outline-offset-2 outline-face; }
+  ::selection { background: rgb(var(--face) / 0.3); }
+}
+@layer components {
+  .card { @apply rounded-2xl border border-line bg-surface shadow-lift; }
+  .panel { @apply rounded-xl border border-line bg-raised; }
+  .btn { @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold transition disabled:cursor-not-allowed disabled:opacity-50 active:scale-[0.98]; }
+  .btn-primary { @apply btn bg-face text-bg hover:brightness-110; }
+  .btn-ghost { @apply btn border border-line bg-transparent text-ink hover:bg-raised; }
+  .btn-danger { @apply btn bg-bad/15 text-bad hover:bg-bad/25; }
+  .input { @apply w-full rounded-lg border border-line bg-bg px-3.5 py-2.5 text-sm text-ink placeholder:text-mute focus:border-face focus:outline-none focus:ring-2 focus:ring-face/30; }
+  .label { @apply mb-1.5 block text-sm font-medium text-ink; }
+  .chip { @apply inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-xs font-semibold; }
+  .th { @apply px-4 py-3 text-left text-xs font-semibold text-mute; }
+  .td { @apply px-4 py-3 text-sm; }
+}
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+.mirror { transform: scaleX(-1); }
+@keyframes scan { 0% { transform: translateY(-10%); } 100% { transform: translateY(110%); } }
+.scanline { animation: scan 2.4s linear infinite; }

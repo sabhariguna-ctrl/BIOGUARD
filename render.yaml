@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: bioguard-api
+    runtime: node
+    rootDir: server
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: ADMIN_EMAIL        # the one administrator (your real email)
+        sync: false
+      - key: STAFF_2FA
+        value: "true"
+      - key: JWT_SECRET
+        generateValue: true
+      - key: MONGO_URI          # MongoDB Atlas connection string
+        sync: false
+      - key: CLIENT_URL         # your Vercel URL, e.g. https://bioguard.vercel.app
+        sync: false
+      - key: BREVO_API_KEY      # Render blocks SMTP, so use the Brevo HTTPS API
+        sync: false
+      - key: MAIL_FROM          # BioGuard <your verified sender>
+        sync: false
