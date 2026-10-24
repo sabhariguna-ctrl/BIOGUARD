@@ -170,4 +170,3 @@ Tests:
 4. How do you protect biometric data? (Only templates stored, no raw images, erase endpoint, JWT, rate limiting, helmet.)
 5. Why does `wFace` depend on quality? (Reduces false rejects from poor lighting without weakening security.)
 6. What would you improve? (Server-side face verification, anti-deepfake models, per-user adaptive thresholds, public-chain anchoring.)
-# BIOGUARD
